@@ -1,42 +1,31 @@
-"use client";
-
 import { Settings, LayoutDashboard, ArrowRightLeft } from "lucide-react";
 import {
   SidebarGroup,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { SiteItem } from "./site-item";
 
-// Menu items.
+export const SITE_ITEMS = {
+  DASHBOARD: "Dashboard",
+  TRANSACTIONS: "Transactions",
+  SETTINGS: "Settings",
+} as const;
+
+export type SiteItemKey = (typeof SITE_ITEMS)[keyof typeof SITE_ITEMS];
+
 const items = [
-  {
-    title: "Dashboard",
-    url: "#",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Transactions",
-    url: "#",
-    icon: ArrowRightLeft,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  SITE_ITEMS.DASHBOARD,
+  SITE_ITEMS.TRANSACTIONS,
+  SITE_ITEMS.SETTINGS,
 ];
-
 export function NavMain() {
   return (
     <SidebarGroup>
-      <SidebarMenu>
+      <SidebarMenu className="gap-4">
         {items.map((item) => (
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip={item.title}>
-              {item.icon && <item.icon />}
-              <span>{item.title}</span>
-            </SidebarMenuButton>
+            <SiteItem item={item} />
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
