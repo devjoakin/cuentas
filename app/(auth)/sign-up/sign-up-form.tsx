@@ -65,8 +65,7 @@ export function SignUpForm() {
     const { error } = await signUp.email({
       email,
       password,
-      name,
-      callbackURL: "/email-verified",
+      name
     });
 
     if (error) {
@@ -74,7 +73,7 @@ export function SignUpForm() {
       return;
     } else {
       toast.success("Account created successfully!");
-      router.push("dashboard");
+      router.push("/");
     }
   }
 
